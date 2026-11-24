@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ app_name }} | GitLab Knowledge Hub</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand-badge">GITLAB • KNOWLEDGE HUB</div>
+
+        <h1>Nexora<br/>AI Assistant</h1>
+
+        <p class="muted">
+          Your intelligent workspace companion for GitLab documentation,
+          engineering workflows, and internal IT support.
+        </p>
+      </div>
+
+      <div class="workflow-card">
+        <h3>Knowledge Pipeline</h3>
+        <div class="flow-step">01 · Query Classification</div>
+        <div class="flow-step">02 · Repository Retrieval</div>
+        <div class="flow-step">03 · Evidence Evaluation</div>
+        <div class="flow-step">04 · Web Search Fallback</div>
+        <div class="flow-step">05 · Query Refinement</div>
+        <div class="flow-step">06 · Contextual Response</div>
+      </div>
+
+      <div>
+        <button id="openUpload" class="secondary-btn">
+          + Add Knowledge Document
+        </button>
+        <p class="muted" style="font-size:11px;margin-top:12px;">
+          Powered by LangGraph · Pinecone · Groq
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main">
+
+      <header class="topbar">
+        <div>
+          <span class="status-dot"></span>
+          <span>Knowledge Workspace</span>
+        </div>
+        <span class="pill">● Agentic RAG · Active</span>
+      </header>
+
+      <section id="chat" class="chat-area">
+
+        <div class="message assistant">
+          <div class="avatar">N</div>
+
+          <div class="bubble">
+            <strong>Welcome to Nexora 👋</strong>
+
+            <p>
+              Your AI-powered GitLab knowledge assistant.
+              Ask questions about internal documentation, engineering
+              processes, repository guidelines, or IT support.
+            </p>
+
+            <p>
+              I'll search your private knowledge base first and use
+              external sources when additional evidence is needed.
+            </p>
+
+            <div class="answer-source">PRIVATE KNOWLEDGE FIRST</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Chat Composer -->
+      <section class="composer-wrap">
+
+        <div class="examples">
+          <button class="example">
+            How do I configure a GitLab CI/CD pipeline?
+          </button>
+
+          <button class="example">
+            What is our repository access policy?
+          </button>
+
+          <button class="example">
+            How do I troubleshoot GitLab Runner?
+          </button>
+        </div>
+
+        <form id="chatForm" class="composer">
+          <textarea
+            id="question"
+            rows="2"
+            placeholder="Ask Nexora about GitLab, documentation, or IT support..."
+            required
+          ></textarea>
+
+          <button type="submit" class="send-btn">
+            Ask Nexora →
+          </button>
+        </form>
+
+        <p class="muted" style="font-size:11px;text-align:center;margin-top:10px;">
+          Responses are generated using retrieved context and supporting evidence.
+        </p>
+
+      </section>
+    </main>
+
+    <!-- Agent Trace -->
+    <aside class="trace-panel">
+
+      <h2>Agent Activity</h2>
+
+      <p class="muted">
+        Monitor the agent's reasoning workflow and retrieval decisions.
+      </p>
+
+      <div id="trace" class="trace-list">
+        <div class="empty">Waiting for your first query...</div>
+      </div>
+
+      <div class="source-box">
+        <span>Knowledge Source</span>
+        <strong id="sourceUsed">Awaiting query</strong>
+      </div>
+
+      <div class="source-box">
+        <span>System Status</span>
+        <strong style="color:#2eb67d;">● Ready</strong>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Document Ingestion Modal -->
+  <div id="uploadModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <div class="modal-head">
+        <h2>Import Knowledge</h2>
+        <button id="closeUpload">×</button>
+      </div>
+
+      <p class="muted">
+        Add internal GitLab documentation and company resources
+        to Nexora's searchable knowledge base.
+      </p>
+
+      <input
+        id="adminKey"
+        type="password"
+        placeholder="Admin API key"
+      />
+
+      <input
+        id="fileInput"
+        type="file"
+        accept=".pdf,.txt,.md,.docx"
+      />
+
+      <button id="uploadBtn" class="send-btn full">
+        Import & Index Document
+      </button>
+
+      <div id="uploadStatus" class="upload-status"></div>
+
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
